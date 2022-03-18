@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityMeshImporter
 ;
 
@@ -12,6 +13,7 @@ public class ObjectLoader : MonoBehaviour
     int currentChild =0;
     public List<GameObject> allChildren;
     Quaternion originalRotationValue;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +28,14 @@ public class ObjectLoader : MonoBehaviour
 
         foreach(string model in myFiles )
         {
+          
             var ob = MeshImporter.Load(model);
             ob.transform.SetParent(this.transform, false);
 
             allChildren.Add(ob);
 
         }
-
+     
         if (allChildren.Count>0)
         {
             foreach (GameObject child in allChildren)
@@ -73,9 +76,5 @@ public class ObjectLoader : MonoBehaviour
 
         allChildren[currentChild].SetActive(true);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
